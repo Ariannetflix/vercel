@@ -6,13 +6,13 @@ export default async function handler(req) {
   const url = new URL(req.url);
   
   // 1. Point to your backend
-  url.hostname = 'worker2.cubernets.com';
+  url.hostname = 'dir.cubernets.com';
   url.protocol = 'https:';
 
   // 2. Clone headers and fix the Host header
   // Vercel sometimes passes its own host, which confuses the backend
   const newHeaders = new Headers(req.headers);
-  newHeaders.set('Host', 'worker2.cubernets.com');
+  newHeaders.set('Host', 'dir.cubernets.com');
 
   // 3. Create the proxy request
   // We pass req.body directly to support xhttp/splitHttp streaming
