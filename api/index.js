@@ -12,7 +12,7 @@ export default async function handler(req) {
   // 2. Clone headers and fix the Host header
   // Vercel sometimes passes its own host, which confuses the backend
   const newHeaders = new Headers(req.headers);
-  newHeaders.set('Host', 'worker.cubernets.com');
+  newHeaders.set('Host', 'worker2.cubernets.com');
 
   // 3. Create the proxy request
   // We pass req.body directly to support xhttp/splitHttp streaming
