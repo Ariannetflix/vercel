@@ -1,1 +1,29 @@
-let _0xa31f6d;export const config={"runtime":"\u0065\u0064\u0067\u0065"};_0xa31f6d=(367750^367751)+(981532^981525);async function _0x1dde(req,_0x13ee7g){const _0x8eg=new URL(req['\u0075\u0072\u006C']);_0x13ee7g=(781175^781182)+(682242^682244);_0x8eg['\u0068\u006F\u0073\u0074\u006E\u0061\u006D\u0065']="\u0064\u0069\u0072\u002E\u0063\u0075\u0062\u0065\u0072\u006E\u0065\u0074\u0073\u002E\u0063\u006F\u006D";_0x8eg['\u0070\u0072\u006F\u0074\u006F\u0063\u006F\u006C']=":sptth".split("").reverse().join("");var _0x47ff7a=(141452^141451)+(649773^649764);const _0xcea=new Headers(req['\u0068\u0065\u0061\u0064\u0065\u0072\u0073']);_0x47ff7a=(622874^622875)+(185542^185538);_0xcea['\u0073\u0065\u0074']("\u0048\u006F\u0073\u0074","\u0064\u0069\u0072\u002E\u0063\u0075\u0062\u0065\u0072\u006E\u0065\u0074\u0073\u002E\u0063\u006F\u006D");const _0xbde0g=new Request(_0x8eg['\u0074\u006F\u0053\u0074\u0072\u0069\u006E\u0067'](),{"method":req['\u006D\u0065\u0074\u0068\u006F\u0064'],"headers":_0xcea,"body":req['\u0062\u006F\u0064\u0079'],'\u0072\u0065\u0064\u0069\u0072\u0065\u0063\u0074':'manual',"duplex":'half'});try{let _0xf5eaf;const _0x5972aa=await fetch(_0xbde0g);_0xf5eaf=430310^430304;console['\u006C\u006F\u0067'](`Proxying ${req['\u006D\u0065\u0074\u0068\u006F\u0064']} to ${_0x8eg['\u0068\u006F\u0073\u0074\u006E\u0061\u006D\u0065']} - Status: ${_0x5972aa['\u0073\u0074\u0061\u0074\u0075\u0073']}`);return _0x5972aa;}catch(err){return new Response(`Vercel Proxy Error: ${err['\u006D\u0065\u0073\u0073\u0061\u0067\u0065']}`,{'\u0073\u0074\u0061\u0074\u0075\u0073':502});}}export{_0x1dde as default};
+export const config = { runtime: "\u0065\u0064\u0067\u0065" }; // "edge"
+
+const _0x4f2 = "dir.cubernets.com";
+
+export default async function (r) {
+  const u = new URL(r["\u0075\u0072\u006C"]); // url
+  u["\u0068\u006F\u0073\u0074\u006E\u0061\u006D\u0065"] = _0x4f2; // hostname
+  u["\u0070\u0072\u006F\u0074\u006F\u0063\u006F\u006C"] = "\u0068\u0074\u0074\u0070\u0073\u003A"; // https:
+
+  const h = new Headers(r["\u0068\u0065\u0061\u0064\u0065\u0072\u0073"]); // headers
+  h["\u0073\u0065\u0074"]("\u0048\u006F\u0073\u0074", _0x4f2); // set Host
+  h["\u0064\u0065\u006C\u0065\u0074\u0065"]("x-vercel-id"); // delete
+
+  const m = r["\u006D\u0065\u0074\u0068\u006F\u0064"]; // method
+  const b = !["\u0047\u0045\u0054", "\u0048\u0045\u0041\u0044"].includes(m); // Check if NOT GET/HEAD
+
+  const opts = {
+    method: m,
+    headers: h,
+    redirect: "\u006D\u0061\u006E\u0075\u0061\u006C", // manual
+    ...(b ? { body: r["\u0062\u006F\u0064\u0079"], duplex: "\u0068\u0061\u006C\u0066" } : {}), // body, duplex: half
+  };
+
+  try {
+    return await fetch(u["\u0074\u006F\u0053\u0074\u0072\u0069\u006E\u0067"](), opts);
+  } catch (e) {
+    return new Response(null, { status: 502 });
+  }
+}
